@@ -14,8 +14,6 @@ useSeoMeta({
     ogDescription: description
 })
 
-defineOgImageComponent('RH Food')
-
 const toast = useToast()
 
 const schema = z.object({

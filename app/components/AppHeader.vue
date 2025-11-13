@@ -3,8 +3,7 @@ const items = computed(() => [{
   label: 'Sobre',
   to: '/about'
 }, {
-  label: 'Vagas',
-  to: '/pricing'
+  label: 'Vagas'
 }, {
   label: 'Contato',
   to: '/contact'

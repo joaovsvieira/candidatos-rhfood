@@ -10,8 +10,6 @@ useSeoMeta({
     description,
     ogDescription: description
 })
-
-defineOgImageComponent('RH Food')
 </script>
 
 <template>

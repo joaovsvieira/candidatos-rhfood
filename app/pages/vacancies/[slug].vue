@@ -32,8 +32,6 @@ useSeoMeta({
   ogDescription: description
 })
 
-defineOgImageComponent('RH Food')
-
 const toast = useToast()
 
 function share() {
