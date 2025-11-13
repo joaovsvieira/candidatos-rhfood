@@ -1,0 +1,104 @@
+title: As melhores [vagas]{class="text-primary"} estão aqui
+description: Use nossa busca inteligente para encontrar empregos em todo o Brasil. O seu próximo passo na carreira está aqui.
+seo:
+  title: RH Food
+  description: Vagas de Emprego em Todo o Brasil | RH Food
+navigation: false
+vacancies:
+  title: Vagas em Destaque
+  description: Não perca tempo! Estas são as vagas mais quentes para garçons, cozinheiros, baristas e entregadores. Candidate-se antes que fechem.
+  items:
+    - title: Cozinheiro(a) de Chapa (Hamburgueria)
+      description: Av. Olegário Maciel, 120 - Barra da Tijuca, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+    - title: Motoboy Entregador (CLT - Fixo)
+      description: Rua Dias Ferreira, 410 - Leblon, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+    - title: Auxiliar de Cozinha (Turno Diurno)
+      description: Rua Sete de Setembro, 55 - Centro, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+    - title: Barman / Bartender (Extra/Fim de Semana)
+      description: Rua Carolina Machado, 1015 - Madureira, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+    - title: Atendente de Cafeteria / Barista
+      description: Rua Arnaldo Quintela, 90 - Botafogo, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+    - title: Garçom / Garçonete (Bistrô)
+      description: Rua Conde de Bonfim, 330 - Tijuca, Rio de Janeiro - RJ
+      icon: i-lucide-flame
+steps:
+  title: Como funciona para você, candidato?
+  description: Desenhamos uma plataforma simples para conectar você ao seu próximo desafio. Veja como é fácil começar a se candidatar.
+testimonials:
+  headline: Histórias de Sucesso
+  title: Milhares confiam no RH Food
+  description: De estagiários a gerentes, de startups a multinacionais. Estamos orgulhosos de fazer parte da jornada de milhares de pessoas.
+  items:
+    - quote: Tenho 10 anos de experiência com comida mineira e estava difícil achar vagas que valorizassem isso. Usei o filtro de busca e encontrei um restaurante que precisava exatamente do meu perfil. Estou muito feliz na cozinha nova!
+      user:
+        name: Fernanda Oliveira
+        description: Cozinheira
+        avatar:
+          src: https://i.pravatar.cc/120?img=1
+    - quote: Sempre trabalhei como freelancer em eventos nos fins de semana, mas queria algo fixo. Pelo site, consegui uma vaga de garçom em um restaurante italiano super tradicional no meu bairro. O processo foi muito rápido.
+      user:
+        name: Carlos Mendes
+        description: Garçom
+        avatar:
+          src: https://i.pravatar.cc/120?img=7
+    - quote: Eu rodava só por aplicativo, mas queria a segurança de uma carteira assinada. Encontrei aqui uma pizzaria contratando motoboy fixo perto da minha casa. Ajudou demais a organizar a renda da minha família..
+      user:
+        name: Pedro Alencar
+        description: Motoboy
+        avatar:
+          src: https://i.pravatar.cc/120?img=3
+    - quote: Estava procurando meu primeiro emprego em fast-food ou padaria. O site é muito simples de usar no celular. Consegui enviar meu currículo e fui chamada para uma lanchonete no shopping em menos de uma semana.
+      user:
+        name: Luana Martins
+        description: Atendente
+        avatar:
+          src: https://i.pravatar.cc/120?img=5
+    - quote: A plataforma é muito boa para quem é da área. Consegui filtrar vagas exatamente pelo cargo que eu queria (cozinheira) e achei meu emprego atual em menos de 15 dias. O RH Food ajudou muito!
+      user:
+        name: Rachel Kim
+        description: Cozinheira
+        avatar:
+          src: https://i.pravatar.cc/120?img=10
+    - quote: Eu estava buscando minha primeira oportunidade como barista, sem ter muita experiência. Encontrei muitas vagas de 'atendente' que davam treinamento e o processo de mandar o currículo foi muito fácil. Consegui minha vaga!
+      user:
+        name: Juliana Pereira
+        description: Barista
+        avatar:
+          src: https://i.pravatar.cc/120?img=9
+    - quote: O que eu mais gostei foi poder filtrar vagas por bairro. Eu queria trabalhar perto de casa, na Zona Sul. O RH Food mostrou exatamente as vagas nos restaurantes da região e facilitou minha candidatura.
+      user:
+        name: Michael Torres
+        description: Garçom
+        avatar:
+          src: https://i.pravatar.cc/120?img=11
+    - quote: Sou barman há anos e buscava uma vaga num local com uma carta de drinks mais elaborada. Os detalhes nas descrições das vagas aqui são muito bons. Consegui uma ótima posição em um bar novo e conceituado.
+      user:
+        name: Ricardo Almeida
+        description: Barman
+        avatar:
+          src: https://i.pravatar.cc/120?img=8
+faq:
+  title: Perguntas Frequentes
+  description: Tem alguma dúvida? Nós respondemos. Reunimos aqui as perguntas mais comuns de candidatos e empresas para ajudar você a ter a melhor experiência
+  items:
+    - label: Preciso pagar para me candidatar às vagas?
+      content: Não. O RH Food é 100% gratuito para candidatos. Você pode buscar vagas, criar seu perfil completo, cadastrar seu currículo e se candidatar a quantas oportunidades desejar, sem nenhum custo.
+    - label: Como funciona o processo de candidatura?
+      content: É muito simples, basta encontrar a vaga que voce gostou usando nossa busca, em seguida clique no botão "Candidatar-se". Recomendamos que você crie seu perfil e cadastre seu currículo em nossa plataforma. Isso agiliza suas candidaturas futuras e permite que as empresas também encontrem o seu perfil.
+    - label: Sou uma empresa. Como faço para anunciar uma vaga?
+      content: Ficamos felizes com seu interesse! Para publicar uma vaga, basta se cadastrar no link https://empresas.rhfood.com.br/
+cta:
+  title: Leve o RH Food com você
+  description: Não perca nenhuma oportunidade. Cadastre-se e receba notificações de vagas, gerencie suas candidaturas e seja contratado mais rápido.
+  links:
+    - label: Criar conta
+      to: 'signup'
+    - label: Vagas
+      to: ''
+      variant: subtle
+      trailingIcon: i-lucide-arrow-right

@@ -1,0 +1,34 @@
+title: Sobre Nós | RH Food - Vagas em Food Service
+description: Nascemos para conectar cafés, hóteis, bares e restaurantes aos melhores profissionais do setor.
+navigation.icon: i-lucide-building-2
+sections:
+  - title: Para empresas
+    description: Nós entendemos o ritmo do seu negócio. Gerenciar um restaurante, bar ou padaria exige agilidade, e encontrar a equipe certa não pode ser um processo lento ou genérico. Criamos o RH Food para ser uma ferramenta simples, rápida e eficaz.
+    id: features
+    orientation: horizontal
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    features:
+      - name: Talento Especializado
+        description: Tenha acesso a um banco de talentos 100% focado no setor. Nossos candidatos buscam ativamente por vagas na área.
+        icon: i-lucide-check
+      - name: Contratação Ágil
+        description: Publique sua vaga em minutos e comece a receber candidaturas de perfis relevantes no mesmo dia.
+        icon: i-lucide-check
+      - name: Menos Ruído, Mais Foco
+        description: Chega de analisar currículos de áreas totalmente diferentes. Aqui, você filtra pelo que realmente importa.
+        icon: i-lucide-check
+  - title: Para candidatos
+    description: Chega de perder tempo procurando vagas de garçom ou cozinheiro em meio a milhares de anúncios de escritório. Aqui, todas as oportunidades são para você, do seu primeiro emprego como atendente à sua vaga de chef de cozinha.
+    orientation: horizontal
+    image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    reverse: true
+    features:
+      - name: Só Vagas Relevantes
+        description: Filtre apenas pelo que interessa. Nossas categorias são 100% focadas em restaurantes, bares, cafés e delivery. Se está aqui, é da sua área.
+        icon: i-lucide-check
+      - name: Conexão Local
+        description: Encontre as melhores oportunidades perto da sua casa. Nosso filtro de localização ajuda você a achar vagas em regiões de fácil acesso.
+        icon: i-lucide-check
+      - name: Perfil Focado
+        description: Crie seu perfil uma vez e destaque o que realmente importa para os recrutadores do setor.
+        icon: i-lucide-check

@@ -1,0 +1,43 @@
+<script setup lang="ts">
+const columns = [{
+  label: 'Empresa',
+  children: [{
+    label: 'Sobre',
+    to: '/about'
+  }, {
+    label: 'Vagas'
+  }, {
+    label: 'Contato',
+    to: '/contact'
+  }]
+}]
+</script>
+
+<template>
+  <USeparator />
+
+  <UFooter :ui="{ top: 'border-b border-default' }">
+    <template #top>
+      <UContainer>
+        <UFooterColumns :columns="columns" />
+      </UContainer>
+    </template>
+
+    <template #left>
+      <p class="text-muted text-sm">
+        RH Food • © {{ new Date().getFullYear() }}
+      </p>
+    </template>
+
+    <template #right>
+      <UButton
+        to="https://instagram.com/rhfoodbr"
+        target="_blank"
+        icon="i-simple-icons-instagram"
+        aria-label="RH Food no Instagram"
+        color="neutral"
+        variant="ghost"
+      />
+    </template>
+  </UFooter>
+</template>
