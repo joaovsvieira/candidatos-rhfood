@@ -5,7 +5,14 @@ const columns = [{
     label: 'Sobre',
     to: '/about'
   }, {
-    label: 'Vagas'
+    label: 'Vagas',
+    to: '/search'
+  }, {
+    label: 'Para Empresas',
+    to: '/pricing'
+  }, {
+    label: 'Passo a Passo',
+    to: '/step-by-step'
   }, {
     label: 'Contato',
     to: '/contact'
@@ -25,7 +32,7 @@ const columns = [{
 
     <template #left>
       <p class="text-muted text-sm">
-        RH Food • © {{ new Date().getFullYear() }}
+        RHFood • © {{ new Date().getFullYear() }}
       </p>
     </template>
 
@@ -34,7 +41,7 @@ const columns = [{
         to="https://instagram.com/rhfoodbr"
         target="_blank"
         icon="i-simple-icons-instagram"
-        aria-label="RH Food no Instagram"
+        aria-label="RHFood no Instagram"
         color="neutral"
         variant="ghost"
       />

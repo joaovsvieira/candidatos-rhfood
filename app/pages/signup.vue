@@ -2,14 +2,20 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
+const config = useRuntimeConfig()
+const API_BASE = config.public.apiBaseUrl
+
 definePageMeta({
-  layout: 'auth'
+  layout: 'auth',
+  middleware: ['sanctum:guest']
 })
 
 useSeoMeta({
-  title: 'Cadastro',
-  description: 'Crie uma conta para começar'
+  title: 'RHFood - Crie sua conta',
+  description: 'Encontre sua próxima oportunidade de emprego'
 })
+
+const { login } = useSanctumAuth()
 
 const toast = useToast()
 
@@ -31,18 +37,63 @@ const fields = [{
   type: 'password' as const,
   placeholder: 'Insira sua senha',
   required: true
+}, {
+  name: 'password_confirmation',
+  label: 'Repita sua senha',
+  type: 'password' as const,
+  placeholder: 'Repita sua senha',
+  required: true
 }]
 
 const schema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
   email: z.string().email('E-mail inválido'),
-  password: z.string().min(8, 'Deve ter pelo menos 8 caracteres')
+  password: z.string().min(8, 'Deve ter pelo menos 8 caracteres'),
+  password_confirmation: z.string().min(8, 'Deve ter pelo menos 8 caracteres')
+}).refine(data => data.password === data.password_confirmation, {
+  message: 'O campo senha de confirmação não confere.',
+  path: ['password_confirmation']
 })
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload)
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  const credentials = {
+    name: payload.data.name,
+    email: payload.data.email,
+    password: payload.data.password,
+    password_confirmation: payload.data.password_confirmation
+  }
+
+  try {
+    const token = await getCsrfToken()
+
+    if (!token) {
+      toast.add({ title: 'Ocorreu um erro', description: 'Tente novamente, mais tarde.', color: 'error' })
+      throw new Error('CSRF Token não foi obtido.')
+    }
+
+    await $fetch(`${API_BASE}/api/register`, {
+      method: 'POST',
+      body: credentials,
+      headers: {
+        'X-XSRF-TOKEN': token
+      },
+      credentials: 'include'
+    })
+
+    await login(credentials)
+  } catch (e) {
+    const error = useApiError(e)
+
+    if (error.isValidationError) {
+      Object.entries(error.bag).forEach((err) => {
+        toast.add({ title: 'Ocorreu um erro', description: err[1][0], color: 'error' })
+      })
+    } else {
+      toast.add({ title: 'Ocorreu um erro', description: 'Tente novamente, mais tarde.', color: 'error' })
+    }
+  }
 }
 </script>
 

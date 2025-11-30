@@ -1,3 +1,3 @@
 <template>
-  <NuxtImg src="/app-logo-red.png" />
+  <NuxtImg src="/app-logo-default.png" />
 </template>

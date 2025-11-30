@@ -19,11 +19,18 @@ useHead({
 
 const links = [{
   label: 'Sobre',
-  icon: 'i-lucide-building-2',
   to: '/about'
 }, {
+  label: 'Vagas',
+  to: '/search'
+}, {
+  label: 'Para Empresas',
+  to: '/pricing'
+}, {
+  label: 'Passo a Passo',
+  to: '/step-by-step'
+}, {
   label: 'Contato',
-  icon: 'i-lucide-contact',
   to: '/contact'
 }]
 </script>

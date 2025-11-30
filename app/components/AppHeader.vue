@@ -3,7 +3,14 @@ const items = computed(() => [{
   label: 'Sobre',
   to: '/about'
 }, {
-  label: 'Vagas'
+  label: 'Vagas',
+  to: '/search'
+}, {
+  label: 'Para Empresas',
+  to: '/pricing'
+}, {
+  label: 'Passo a Passo',
+  to: '/step-by-step'
 }, {
   label: 'Contato',
   to: '/contact'
@@ -14,7 +21,7 @@ const items = computed(() => [{
   <UHeader>
     <template #left>
       <NuxtLink to="/">
-        <AppLogo class="w-auto h-8 shrink-0" />
+        <AppLogo class="w-auto h-10 shrink-0" />
       </NuxtLink>
     </template>
 
@@ -30,7 +37,7 @@ const items = computed(() => [{
         label="Minha conta"
         color="neutral"
         variant="outline"
-        to="/login"
+        to="/my-account"
         class="hidden lg:inline-flex"
       />
 
@@ -39,7 +46,7 @@ const items = computed(() => [{
         color="neutral"
         trailing-icon="i-lucide-arrow-right"
         class="hidden lg:inline-flex"
-        to="/signup"
+        to="/vacancies"
       />
     </template>
 
@@ -56,14 +63,14 @@ const items = computed(() => [{
         label="Minha conta"
         color="neutral"
         variant="subtle"
-        to="/login"
+        to="/my-account"
         block
         class="mb-3"
       />
       <UButton
         label="Vagas"
         color="neutral"
-        to="/signup"
+        to="/vacancies"
         block
       />
     </template>

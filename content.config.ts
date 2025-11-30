@@ -37,11 +37,7 @@ export const collections = {
     source: '0.index.yml',
     type: 'page',
     schema: z.object({
-      vacancies: createBaseSchema().extend({
-        items: z.array(createFeatureItemSchema())
-      }),
       testimonials: createBaseSchema().extend({
-        headline: z.string().optional(),
         items: z.array(
           z.object({
             quote: z.string().nonempty(),
@@ -55,38 +51,13 @@ export const collections = {
           })
         )
       }),
-      steps: createBaseSchema(),
-      faq: createBaseSchema().extend({
-        items: z.array(
-          z.object({
-            label: z.string().nonempty(),
-            content: z.string().nonempty()
-          })
-        )
-      }),
       cta: createBaseSchema().extend({
         links: z.array(createLinkSchema())
       })
     })
   }),
-  vacancies: defineCollection({
-    source: 'vacancies/**/*',
-    type: 'page',
-    schema: z.object({
-      date: z.date(),
-      badge: z.object({ src: z.string().nonempty().editor({ input: 'media' }) }),
-      company: z.object({
-        name: z.string().nonempty(),
-        avatar: z.object({ src: z.string().nonempty().editor({ input: 'media' }) })
-      })
-    })
-  }),
-  contact: defineCollection({
-    source: '1.contact.yml',
-    type: 'page'
-  }),
   about: defineCollection({
-    source: '2.about.yml',
+    source: '1.about.yml',
     type: 'page',
     schema: z.object({
       sections: z.array(
