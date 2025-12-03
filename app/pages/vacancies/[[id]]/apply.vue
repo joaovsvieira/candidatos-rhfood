@@ -166,6 +166,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
     await navigateTo(`/vacancies/${route.params.id}/success`)
   } catch (e) {
+    console.log(e)
     const error = useApiError(e)
 
     if (error.isValidationError) {
