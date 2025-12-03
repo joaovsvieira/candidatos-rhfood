@@ -13,6 +13,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.71",
     "@iconify-json/simple-icons": "^1.2.55",
+    "@internationalized/date": "^3.10.0",
     "@nuxt/content": "^3.7.1",
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^4.1.0",
@@ -20,6 +21,7 @@
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.4.1",
     "markdown-it": "^14.1.0",
+    "maska": "^3.2.0",
     "nuxt": "^4.2.0",
     "nuxt-auth-sanctum": "1.4.2",
     "nuxt-og-image": "^5.1.12",

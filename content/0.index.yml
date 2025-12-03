@@ -53,8 +53,8 @@ cta:
   description: Não perca nenhuma oportunidade. Cadastre-se e receba notificações de vagas, gerencie suas candidaturas e seja contratado mais rápido.
   links:
     - label: Criar conta
-      to: 'signup'
+      to: 'my-account'
     - label: Vagas
-      to: ''
+      to: 'search'
       variant: subtle
       trailingIcon: i-lucide-arrow-right

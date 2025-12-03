@@ -46,7 +46,7 @@ const items = computed(() => [{
         color="neutral"
         trailing-icon="i-lucide-arrow-right"
         class="hidden lg:inline-flex"
-        to="/vacancies"
+        to="/search"
       />
     </template>
 
@@ -70,7 +70,7 @@ const items = computed(() => [{
       <UButton
         label="Vagas"
         color="neutral"
-        to="/vacancies"
+        to="/search"
         block
       />
     </template>

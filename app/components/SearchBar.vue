@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import brasilDataRaw from '~/../assets/data/estados-cidades.json'
+
 interface Estado {
   sigla: string
   nome: string
@@ -9,7 +11,7 @@ interface BrasilData {
   estados: Estado[]
 }
 
-const { data: items } = await useFetch<BrasilData>('/estados-cidades.json')
+const items = brasilDataRaw as BrasilData
 
 const selectedState = ref<Estado | undefined>()
 
