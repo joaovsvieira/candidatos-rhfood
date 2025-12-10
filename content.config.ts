@@ -79,5 +79,9 @@ export const collections = {
       description: z.string(),
       step: z.string()
     })
+  }),
+  success: defineCollection({
+    source: 'success/**/*',
+    type: 'page'
   })
 }

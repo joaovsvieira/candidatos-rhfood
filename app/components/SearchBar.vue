@@ -17,7 +17,7 @@ const selectedState = ref<Estado | undefined>()
 
 const selectedCity = ref<string | undefined>()
 
-const stateOptions = computed(() => items.value?.estados || [])
+const stateOptions = computed(() => items.estados || [])
 
 const cityOptions = computed(() => {
   if (!selectedState.value) return []

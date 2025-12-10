@@ -20,6 +20,7 @@
     "@standard-schema/spec": "^1.0.0",
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.4.1",
+    "date-fns": "^4.1.0",
     "markdown-it": "^14.1.0",
     "maska": "^3.2.0",
     "nuxt": "^4.2.0",

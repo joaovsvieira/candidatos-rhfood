@@ -2,6 +2,7 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
+const route = useRoute()
 const config = useRuntimeConfig()
 const API_BASE = config.public.apiBaseUrl
 
@@ -11,7 +12,7 @@ definePageMeta({
 })
 
 useSeoMeta({
-  title: 'RHFood - Esqueci minha senha',
+  title: 'RHFood - Redefinir senha',
   description: 'Encontre sua próxima oportunidade de emprego'
 })
 
@@ -22,16 +23,38 @@ const fields = [{
   type: 'text' as const,
   label: 'E-mail',
   placeholder: 'Insira seu e-mail',
+  required: true,
+  readonly: true,
+  value: route.query.email
+}, {
+  name: 'password',
+  type: 'password' as const,
+  label: 'Senha',
+  placeholder: 'Senha',
+  required: true
+}, {
+  name: 'password_confirmation',
+  type: 'password' as const,
+  label: 'Repita sua senha',
+  placeholder: 'Repita sua senha',
   required: true
 }]
 
 const schema = z.object({
-  email: z.email('E-mail inválido')
+  password: z.string().min(8, 'Deve ter pelo menos 8 caracteres'),
+  password_confirmation: z.string().min(8, 'Deve ter pelo menos 8 caracteres')
 })
 
 type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  const data = {
+    email: route.query.email,
+    password: payload.data.password,
+    password_confirmation: payload.data.password_confirmation,
+    token: route.query.token
+  }
+
   try {
     const token = await getCsrfToken()
 
@@ -40,16 +63,20 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       throw new Error('CSRF Token não foi obtido.')
     }
 
-    await $fetch(`${API_BASE}/api/forgot-password`, {
+    await $fetch(`${API_BASE}/api/reset-password`, {
       method: 'POST',
-      body: { email: payload.data.email },
+      body: data,
       headers: {
         'X-XSRF-TOKEN': token
       },
       credentials: 'include'
     })
 
-    toast.add({ title: 'Verifique o seu email', description: 'Foi enviado o link para redefinição de senha!', color: 'success' })
+    toast.add({ title: 'Sucesso', description: 'Sua senha foi redefinida!', color: 'success' })
+
+    await navigateTo({
+      path: '/login'
+    })
   } catch (e) {
     const error = useApiError(e)
 
@@ -68,9 +95,9 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   <UAuthForm
     :fields="fields"
     :schema="schema"
-    title="Recuperar senha"
-    description="Insira o seu e-mail para receber um link de redefinição de senha."
-    :submit="{ label: 'Enviar link de redefinição' }"
+    title="Redefinir senha"
+    description="Por favor, digite sua nova senha abaixo"
+    :submit="{ label: 'Redefinir senha' }"
     @submit="onSubmit"
   />
 </template>

@@ -34,3 +34,11 @@ interface Vacancy {
   created_at: string
   updated_at: string
 }
+
+interface Candidate {
+  id: string
+  status: string
+  reason_for_disqualification: string
+  created_at: string
+  vacancy: Vacancy
+}
