@@ -91,7 +91,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer>
+  <UContainer v-if="vacancy">
     <UPageHeader
       :title="title"
       :description="description"
@@ -199,6 +199,16 @@ useSeoMeta({
               trailing-icon="i-lucide-copy"
               class="mt-2"
               @click="share"
+            />
+            <UButton
+              size="lg"
+              label="Ver no mapa"
+              color="info"
+              variant="subtle"
+              trailing-icon="i-lucide-map-pin"
+              class="mt-2"
+              :to="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(vacancy.address_street+', '+vacancy.address_district+', '+vacancy.address_city)}`"
+              target="_blank"
             />
           </div>
         </div>

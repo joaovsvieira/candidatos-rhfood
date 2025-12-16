@@ -13,7 +13,7 @@ const cards = computed(() => {
       id: vacancy.id,
       title: truncate(vacancy.title, 32),
       description: `${address_street} ${vacancy.address_city} - ${vacancy.address_state}`,
-      icon: 'i-lucide-flame'
+      badge: vacancy.role_name
     }
   })
 })
@@ -21,17 +21,27 @@ const cards = computed(() => {
 
 <template>
   <UPageSection
+    v-if="cards.length"
     title="Vagas em Destaque"
     description="Não perca tempo! Estas são as vagas mais quentes para garçons, cozinheiros, baristas e entregadores. Candidate-se antes que fechem."
+    :ui="{
+      container: 'py-10 sm:py-10 lg:pb-0 lg:pt-20'
+    }"
   >
-    <UPageGrid v-if="cards.length">
+    <UPageGrid>
       <UPageCard
         v-for="(card, index) in cards"
         :key="index"
         v-bind="card"
         :to="`/vacancies/${card.id}`"
         spotlight
-      />
+      >
+        <template #header>
+          <UBadge variant="subtle">
+            {{ card.badge }}
+          </UBadge>
+        </template>
+      </UPageCard>
     </UPageGrid>
 
     <div class="text-center">

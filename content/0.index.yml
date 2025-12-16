@@ -24,7 +24,7 @@ testimonials:
         description: Atendente
         avatar:
           src: https://i.pravatar.cc/120?img=5
-    - quote: A plataforma é muito boa para quem é da área. Consegui filtrar vagas exatamente pelo cargo que eu queria (cozinheira) e achei meu emprego atual em menos de 15 dias. O RH Food ajudou muito!
+    - quote: A plataforma é muito boa para quem é da área. Consegui filtrar vagas exatamente pelo cargo que eu queria (cozinheira) e achei meu emprego atual em menos de 15 dias. O RHFood ajudou muito!
       user:
         name: Rachel Kim
         description: Cozinheira
@@ -36,7 +36,7 @@ testimonials:
         description: Barista
         avatar:
           src: https://i.pravatar.cc/120?img=9
-    - quote: O que eu mais gostei foi poder filtrar vagas por bairro. Eu queria trabalhar perto de casa, na Zona Sul. O RH Food mostrou exatamente as vagas nos restaurantes da região e facilitou minha candidatura.
+    - quote: O que eu mais gostei foi poder filtrar vagas por bairro. Eu queria trabalhar perto de casa, na Zona Sul. O RHFood mostrou exatamente as vagas nos restaurantes da região e facilitou minha candidatura.
       user:
         name: Michael Torres
         description: Garçom
@@ -49,7 +49,7 @@ testimonials:
         avatar:
           src: https://i.pravatar.cc/120?img=8
 cta:
-  title: Leve o RH Food com você 
+  title: Leve o RHFood com você 
   description: Não perca nenhuma oportunidade. Cadastre-se e receba notificações de vagas, gerencie suas candidaturas e seja contratado mais rápido.
   links:
     - label: Criar conta

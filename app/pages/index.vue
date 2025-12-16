@@ -22,6 +22,9 @@ useSeoMeta({
       id="testimonials"
       title="Histórias de Sucesso"
       description="De estagiários a gerentes, de startups a multinacionais. Estamos orgulhosos de fazer parte da jornada de milhares de pessoas."
+      :ui="{
+        container: 'py-10 sm:py-10 lg:py-10'
+      }"
     >
       <UPageColumns class="xl:columns-4">
         <UPageCard

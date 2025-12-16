@@ -23,7 +23,7 @@
             <!-- content -->
             <div class="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-3xl">
               <UPageHero
-                description="Use nossa busca inteligente para encontrar empregos em todo o Brasil. "
+                description="A busca inteligente para encontrar empregos em todo o Brasil. "
                 :ui="{
                   container: 'gap-16 sm:gap-y-8',
                   title: 'lg:text-left text-3xl',

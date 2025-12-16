@@ -2,7 +2,7 @@
 const items = ref([
   {
     label: 'Preciso pagar para me candidatar às vagas?',
-    content: 'Não. O RH Food é 100% gratuito para candidatos. Você pode buscar vagas, criar seu perfil completo, cadastrar seu currículo e se candidatar a quantas oportunidades desejar, sem nenhum custo.'
+    content: 'Não. O RHFood é 100% gratuito para candidatos. Você pode buscar vagas, criar seu perfil completo, cadastrar seu currículo e se candidatar a quantas oportunidades desejar, sem nenhum custo.'
   },
   {
     label: 'Como funciona o processo de candidatura?',
@@ -10,7 +10,7 @@ const items = ref([
   },
   {
     label: 'Sou uma empresa. Como faço para anunciar uma vaga?',
-    content: 'Ficamos felizes com seu interesse! Para publicar uma vaga, basta se cadastrar no link https://empresas.rhfood.com.br/'
+    content: 'Ficamos felizes com seu interesse! Para publicar uma vaga, basta se cadastrar no link https://app.rhfood.com.br/'
   }
 ])
 </script>
@@ -19,6 +19,9 @@ const items = ref([
   <UPageSection
     title="Perguntas Frequentes"
     description="Tem alguma dúvida? Nós respondemos. Reunimos aqui as perguntas mais comuns de candidatos e empresas para ajudar você a ter a melhor experiência"
+    :ui="{
+      container: 'py-10 sm:py-10 lg:py-10'
+    }"
   >
     <UAccordion
       :items="items"

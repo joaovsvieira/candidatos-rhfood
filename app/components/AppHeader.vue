@@ -43,7 +43,6 @@ const items = computed(() => [{
 
       <UButton
         label="Vagas"
-        color="neutral"
         trailing-icon="i-lucide-arrow-right"
         class="hidden lg:inline-flex"
         to="/search"
@@ -69,7 +68,6 @@ const items = computed(() => [{
       />
       <UButton
         label="Vagas"
-        color="neutral"
         to="/search"
         block
       />

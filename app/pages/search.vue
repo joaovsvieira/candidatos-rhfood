@@ -22,7 +22,7 @@ const cards = computed(() => {
       id: vacancy.id,
       title: truncate(vacancy.title, 32),
       description: `${address_street} ${vacancy.address_city} - ${vacancy.address_state}`,
-      icon: 'i-lucide-flame'
+      badge: vacancy.role_name
     }
   })
 })
@@ -44,7 +44,13 @@ const cards = computed(() => {
           v-bind="card"
           :to="`/vacancies/${card.id}`"
           spotlight
-        />
+        >
+          <template #header>
+            <UBadge variant="subtle">
+              {{ card.badge }}
+            </UBadge>
+          </template>
+        </UPageCard>
       </UPageGrid>
 
       <div

@@ -21,11 +21,11 @@ const plans = ref([
     },
     features: [
       {
-        title: 'Vagas ilimitadas',
-        icon: 'i-heroicons-x-circle'
+        title: 'Limite de 10 vagas',
+        icon: 'i-heroicons-check-circle'
       },
       {
-        title: 'Banco de talentos',
+        title: 'Sem acesso ao banco de talentos',
         icon: 'i-heroicons-x-circle'
       },
       {
@@ -60,8 +60,8 @@ const plans = ref([
         icon: 'i-heroicons-check-circle'
       },
       {
-        title: 'Tempo para expirar as vagas',
-        icon: 'i-heroicons-x-circle'
+        title: 'Sem tempo para expirar as vagas',
+        icon: 'i-heroicons-check-circle'
       }
     ]
   }
