@@ -209,12 +209,18 @@ watch(
       description="Editar minha conta"
     />
 
-    <div class="text-right mt-5 mb-15">
+    <div class="mt-5 mb-15 flex space-x-2 justify-end">
       <ULink
         as="button"
         to="/my-account"
       >
-        Visualizar minhas candidaturas
+        Minhas aplicações
+      </ULink>
+      <ULink
+        as="button"
+        to="/my-resumes"
+      >
+        Meus curriculos
       </ULink>
     </div>
 

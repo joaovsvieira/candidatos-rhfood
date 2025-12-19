@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@vueuse/nuxt',
     'nuxt-og-image',
-    'nuxt-auth-sanctum'
+    'nuxt-auth-sanctum',
+    '@pinia/nuxt'
   ],
 
   devtools: {

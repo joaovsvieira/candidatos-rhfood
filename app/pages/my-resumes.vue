@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Applications from '@/components/modules/my-account/sections/Applications.vue'
+import ResumeList from '~/components/modules/my-resumes/sections/ResumeList.vue'
 
 const user = useSanctumUser<User>()
 
@@ -12,15 +12,15 @@ definePageMeta({
   <UContainer>
     <UPageHeader
       :title="`Olá, ${user?.name}`"
-      description="Minhas candidaturas"
+      description="Meus curriculos"
     />
 
     <div class="mt-5 mb-15 flex space-x-2 justify-end">
       <ULink
         as="button"
-        to="/my-resumes"
+        to="/my-account"
       >
-        Meus curriculos
+        Minhas aplicações
       </ULink>
       <ULink
         as="button"
@@ -30,6 +30,6 @@ definePageMeta({
       </ULink>
     </div>
 
-    <Applications />
+    <ResumeList />
   </UContainer>
 </template>
