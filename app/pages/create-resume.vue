@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { provide } from 'vue'
 import type { StepperItem } from '@nuxt/ui'
 import StepCard from '@/components/modules/my-resumes/partials/StepCard.vue'
 import PersonalForm from '@/components/modules/my-resumes/sections/Steps/PersonalForm.vue'
@@ -39,6 +40,8 @@ const items = [
 
 // @ts-expect-error undefined template ref
 const stepper = useTemplateRef('stepper')
+
+provide('stepperRef', stepper)
 </script>
 
 <template>
@@ -48,7 +51,7 @@ const stepper = useTemplateRef('stepper')
       description="Crie seu curriculo"
     />
 
-    <div class="w-full mt-10">
+    <div class="w-full mt-10 mb-10">
       <UStepper
         ref="stepper"
         :items="items"
@@ -81,24 +84,6 @@ const stepper = useTemplateRef('stepper')
           <Preview />
         </template>
       </UStepper>
-
-      <div class="flex gap-2 justify-between mt-10">
-        <UButton
-          leading-icon="i-lucide-arrow-left"
-          :disabled="!stepper?.hasPrev"
-          @click="stepper?.prev()"
-        >
-          Anterior
-        </UButton>
-
-        <UButton
-          trailing-icon="i-lucide-arrow-right"
-          :disabled="!stepper?.hasNext"
-          @click="stepper?.next()"
-        >
-          Próximo
-        </UButton>
-      </div>
     </div>
   </UContainer>
 </template>
