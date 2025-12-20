@@ -23,6 +23,12 @@ const { data: applications } = await useFetch<Candidate[]>(`${apiBaseUrl}/api/my
 
 <template>
   <div class="mb-15 grid grid-cols-1 sm:grid-cols-2">
+    <div
+      v-if="applications?.length === 0"
+      class="text-center text-muted col-span-2 mt-32"
+    >
+      Nenhuma candidatura encontrada.
+    </div>
     <UCard
       v-for="(application, index) in applications"
       :key="index"

@@ -50,7 +50,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div class="w-full lg:w-3/4 space-y-4">
+  <div class="w-full space-y-4">
     <UInput
       v-model="search"
       icon="i-lucide-search"
@@ -80,13 +80,13 @@ async function onSubmit() {
     </div>
 
     <UButton
-      class="w-full text-center"
+      class="w-full justify-center"
       size="xl"
       color="primary"
       variant="subtle"
       @click="onSubmit"
     >
-      Buscar
+      Procurar Vagas
     </UButton>
   </div>
 </template>

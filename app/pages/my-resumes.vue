@@ -15,18 +15,22 @@ definePageMeta({
       description="Meus curriculos"
     />
 
-    <div class="mt-5 mb-15 flex space-x-2 justify-end">
+    <div class="mt-5 mb-15 flex items-center justify-end space-x-2">
       <ULink
         as="button"
         to="/my-account"
       >
-        Minhas aplicações
+        Minhas Aplicações
       </ULink>
+      <USeparator
+        orientation="vertical"
+        class="h-5"
+      />
       <ULink
         as="button"
         to="/edit-profile"
       >
-        Editar minha conta
+        Editar Conta
       </ULink>
     </div>
 
