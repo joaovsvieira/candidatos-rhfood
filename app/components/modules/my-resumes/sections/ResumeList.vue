@@ -1,15 +1,21 @@
-<script>
-
+<script setup lang="ts">
+const user = useSanctumUser<User>()
 </script>
 
 <template>
-    1. baixar os curriculos já cadastrados
-    2. opção para criar novo curriculo
-
-  <ULink
-    as="button"
-    to="/create-resume"
+  <div
+    v-if="!user.resume"
+    class="text-center text-muted col-span-2 mt-32"
   >
-    Criar novo currículo
-  </ULink>
+    <ULink
+      as="button"
+      to="/create-resume"
+    >
+      Criar novo currículo
+    </ULink>
+  </div>
+
+  <div v-else>
+    {{ user.resume }}
+  </div>
 </template>

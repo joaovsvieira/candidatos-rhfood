@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import markdownit from 'markdown-it'
-
 const route = useRoute()
 const apiBaseUrl = useRuntimeConfig().public.apiBaseUrl
 
@@ -41,24 +39,6 @@ const avatar_url = vacancy.value.company_logo ? `${apiBaseUrl}/storage/${vacancy
 const remuneration_salary = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vacancy.value.remuneration_salary / 100)
 const remuneration_comission = vacancy.value.remuneration_comission ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vacancy.value.remuneration_comission / 100) : ''
 const salary = remuneration_salary + (remuneration_comission ? ` + ${remuneration_comission} de gorjeta` : '')
-
-const md = markdownit({
-  html: true,
-  linkify: true,
-  breaks: true
-})
-
-let markdownContent = `**Descrição da Vaga**\n${vacancy.value.description || 'Não informado'}\n\n`
-
-if (vacancy.value.requirements) {
-  markdownContent += `**Requisitos**\n${vacancy.value.requirements}\n\n`
-}
-
-if (vacancy.value.benefits) {
-  markdownContent += `**Benefícios**\n${vacancy.value.benefits}\n\n`
-}
-
-const renderedBody = md.render(markdownContent)
 
 async function share() {
   if (!navigator.clipboard) {
@@ -163,12 +143,32 @@ useSeoMeta({
           />
         </div>
 
-        <div
-          class="prose prose-primary dark:prose-invert max-w-none"
-          v-html="renderedBody"
-        />
+        <div v-if="vacancy.description">
+          <h2 class="text-lg text-pretty font-semibold text-highlighted">
+            Descrição
+          </h2>
+          <p class="text-[15px] text-pretty">
+            {{ vacancy.description }}
+          </p>
+        </div>
 
-        <ContentRendererMarkdown :value="markdownContent" />
+        <div v-if="vacancy.requirements">
+          <h2 class="text-lg text-pretty font-semibold text-highlighted">
+            Requisitos
+          </h2>
+          <p class="text-[15px] text-pretty">
+            {{ vacancy.requirements }}
+          </p>
+        </div>
+
+        <div v-if="vacancy.benefits">
+          <h2 class="text-lg text-pretty font-semibold text-highlighted">
+            Benefícios
+          </h2>
+          <p class="text-[15px] text-pretty">
+            {{ vacancy.benefits }}
+          </p>
+        </div>
 
         <UButton
           size="lg"

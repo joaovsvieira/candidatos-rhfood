@@ -9,7 +9,8 @@ const items = [
   <UPageHero
     description="A busca inteligente para encontrar empregos em todo o Brasil."
     :ui="{
-      title: 'text-4xl sm:text-5xl'
+      title: 'text-4xl sm:text-5xl',
+      container: 'lg:pb-10'
     }"
   >
     <template #top>

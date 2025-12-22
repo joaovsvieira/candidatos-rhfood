@@ -1,6 +1,5 @@
 export const useResumeStore = defineStore('resumeStore', {
   state: () => ({
-    currentStep: 1,
     name: '',
     email: '',
     phone: '',
@@ -40,14 +39,6 @@ export const useResumeStore = defineStore('resumeStore', {
     }>
   }),
   actions: {
-    async nextStep() {
-      this.currentStep += 1
-    },
-
-    async prevStep() {
-      this.currentStep -= 1
-    },
-
     async addExperience() {
       const experience = {
         id: crypto.randomUUID(),

@@ -46,7 +46,7 @@ const formatBytes = (bytes: number, decimals = 2) => {
 }
 
 const schema = z.object({
-  avatar: z.instanceof(File, { message: 'Foto é obrigatório.' })
+  avatar: z.instanceof(File)
     .refine(file => file.size <= MAX_FILE_SIZE, {
       message: `A imagem é muito grande. Por favor, escolha uma imagem menor que ${formatBytes(MAX_FILE_SIZE)}.`
     })
@@ -74,7 +74,9 @@ const schema = z.object({
       {
         message: `A dimensão da imagem é inválida. Por favor, envie uma imagem entre ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} e ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`
       }
-    ),
+    )
+    .optional()
+    .nullable(),
   full_name: z.string().min(1, 'Nome é obrigatório'),
   date_of_birth: z.string().min(1, 'Data de Nascimento é obrigatório'),
   pcd: z.array(z.string()),
@@ -183,10 +185,18 @@ function createObjectUrl(file: File): string {
   return URL.createObjectURL(file)
 }
 
+const fileInputRef = ref<HTMLInputElement | null>(null)
+
+function handleFileClick() {
+  fileInputRef.value?.click()
+}
+
 function onFileChange(event: Event) {
   const input = event.target as HTMLInputElement
 
-  state.curriculum = input.files?.[0] || undefined
+  if (input.files && input.files.length > 0) {
+    state.curriculum = input.files[0]
+  }
 }
 
 const addressLoading = ref(false)
@@ -262,7 +272,7 @@ watch(
           @submit="onSubmit"
         >
           <UFormField
-            label="Foto*"
+            label="Foto"
             name="avatar"
           >
             <UFileUpload
@@ -436,12 +446,36 @@ watch(
             name="curriculum"
             class="mt-8"
           >
-            <UInput
-              class="w-full"
-              aria-required="true"
+            <input
+              ref="fileInputRef"
               type="file"
+              class="hidden"
+              accept=".pdf,.doc,.docx"
               @change="onFileChange"
-            />
+            >
+            <div class="flex items-center gap-3">
+              <UButton
+                icon="i-lucide-upload"
+                color="neutral"
+                variant="outline"
+                @click="handleFileClick"
+              >
+                Selecionar Arquivo
+              </UButton>
+
+              <span class="text-sm text-gray-500 truncate max-w-[200px]">
+                {{ state.curriculum ? state.curriculum.name : 'Nenhum arquivo selecionado' }}
+              </span>
+
+              <UButton
+                v-if="state.curriculum"
+                icon="i-lucide-x"
+                color="gray"
+                variant="ghost"
+                size="xs"
+                @click="state.curriculum = undefined"
+              />
+            </div>
           </UFormField>
 
           <UButton

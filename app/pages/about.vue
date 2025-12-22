@@ -28,7 +28,7 @@ useSeoMeta({
         :features="section.features"
         class="mb-0"
         :ui="{
-          container: 'py-10 sm:py-10 lg:pb-0 lg:pt-10'
+          container: 'py-10 sm:py-10 lg:pb-20 lg:pt-10'
         }"
       >
         <UPageCard

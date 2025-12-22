@@ -22,7 +22,7 @@ const plans = ref([
     features: [
       {
         title: 'Limite de 10 vagas',
-        icon: 'i-heroicons-check-circle'
+        icon: 'i-heroicons-x-circle'
       },
       {
         title: 'Sem acesso ao banco de talentos',
@@ -30,7 +30,7 @@ const plans = ref([
       },
       {
         title: 'Tempo para expirar as vagas',
-        icon: 'i-heroicons-check-circle'
+        icon: 'i-heroicons-x-circle'
       }
     ]
   },
@@ -113,10 +113,6 @@ useSeoMeta({
         />
       </div>
     </UContainer>
-
-    <div class="pt-16 lg:pt-32">
-      <PartnersLogo />
-    </div>
 
     <Faq />
   </div>

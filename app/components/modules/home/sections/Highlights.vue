@@ -25,7 +25,7 @@ const cards = computed(() => {
     title="Vagas em Destaque"
     description="Não perca tempo! Estas são as vagas mais quentes para garçons, cozinheiros, baristas e entregadores. Candidate-se antes que fechem."
     :ui="{
-      container: 'py-10 sm:py-10 lg:pb-0 lg:pt-20'
+      container: 'py-10 pt-20 sm:py-10 sm:pt-20 lg:pb-0 lg:pt-20'
     }"
   >
     <UPageGrid>
