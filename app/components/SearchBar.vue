@@ -80,10 +80,9 @@ async function onSubmit() {
     </div>
 
     <UButton
-      class="w-full justify-center"
+      class="w-full justify-center text-white"
       size="xl"
       color="primary"
-      variant="subtle"
       @click="onSubmit"
     >
       Procurar Vagas

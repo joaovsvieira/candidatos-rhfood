@@ -36,11 +36,24 @@ const title = vacancy.value.title
 const address_street = vacancy.value.address_street ? `${vacancy.value.address_street},` : ''
 const description = `${address_street} ${vacancy.value.address_city} - ${vacancy.value.address_state}`
 const avatar_url = vacancy.value.company_logo ? `${apiBaseUrl}/storage/${vacancy.value.company_logo}` : ''
-const remuneration_salary = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vacancy.value.remuneration_salary / 100)
-const remuneration_comission = vacancy.value.remuneration_comission ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vacancy.value.remuneration_comission / 100) : ''
+const remuneration_salary = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(vacancy.value.remuneration_salary) / 100)
+const remuneration_comission = vacancy.value.remuneration_comission ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(vacancy.value.remuneration_comission) / 100) : ''
 const salary = remuneration_salary + (remuneration_comission ? ` + ${remuneration_comission} de gorjeta` : '')
 
 async function share() {
+  if (!navigator.share) {
+    await copyToClipboard()
+    return
+  }
+
+  navigator.share({
+    url: window.location.href,
+    text: vacancy.value ? 'Vaga de ' + vacancy.value.title + ' na RHFood' : 'Vaga de emprego na RHFood',
+    title: vacancy.value ? vacancy.value.title : 'Vaga de emprego'
+  })
+}
+
+async function copyToClipboard() {
   if (!navigator.clipboard) {
     toast.add({
       title: 'Houve um erro',
@@ -51,7 +64,7 @@ async function share() {
   }
 
   try {
-    await navigator.clipboard.writeText(window.location)
+    await navigator.clipboard.writeText(window.location.href)
     toast.add({
       title: 'Link copiado',
       description: 'Use o link para compartilhar esta vaga!',
@@ -85,7 +98,10 @@ useSeoMeta({
         <time class="text-muted">{{ new Date(vacancy.created_at).toLocaleDateString('pt-BR', { year: 'numeric', month: 'short', day: 'numeric' }) }}</time>
       </template>
 
-      <div class="flex flex-wrap items-center gap-3 mt-4">
+      <div
+        v-if="vacancy.show_company"
+        class="flex flex-wrap items-center gap-3 mt-4"
+      >
         <UButton
           color="neutral"
           variant="subtle"
@@ -197,7 +213,7 @@ useSeoMeta({
               color="success"
               variant="subtle"
               trailing-icon="i-lucide-copy"
-              class="mt-2"
+              class="mt-2 cursor-pointer"
               @click="share"
             />
             <UButton

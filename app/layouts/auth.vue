@@ -9,11 +9,15 @@
       class="absolute left-8 top-8 rounded-full z-10"
     />
 
-    <UPageCard
-      variant="subtle"
-      class="max-w-sm w-full"
-    >
-      <slot />
-    </UPageCard>
+    <div class="flex flex-col items-center">
+      <AppLogo class="w-auto h-10 shrink-0" />
+
+      <UPageCard
+        variant="subtle"
+        class="max-w-sm w-full mt-5"
+      >
+        <slot />
+      </UPageCard>
+    </div>
   </div>
 </template>

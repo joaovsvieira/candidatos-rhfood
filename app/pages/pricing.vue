@@ -11,17 +11,16 @@ const plans = ref([
     title: 'Compra avulsa',
     description: 'Acesso limitado ao recurso que você está comprando, sem cobranças recorrentes.',
     terms: 'Oferta válida até ' + dateFormatted,
-    price: 'R$ 180,00',
+    price: 'R$ 99,90',
     button: {
-      label: 'Comprar',
-      color: 'neutral',
+      label: 'Cadastrar',
       variant: 'subtle',
       to: 'https://app.rhfood.com.br',
       target: '_blank'
     },
     features: [
       {
-        title: 'Limite de 10 vagas',
+        title: 'Limite de 6 vagas',
         icon: 'i-heroicons-x-circle'
       },
       {
@@ -29,7 +28,7 @@ const plans = ref([
         icon: 'i-heroicons-x-circle'
       },
       {
-        title: 'Tempo para expirar as vagas',
+        title: '30 dias para expirar as vagas',
         icon: 'i-heroicons-x-circle'
       }
     ]
@@ -43,8 +42,7 @@ const plans = ref([
     billingCycle: '/mês',
     price: 'R$ 229,00',
     button: {
-      label: 'Assinar',
-      color: 'neutral',
+      label: 'Cadastrar',
       variant: 'subtle',
       to: 'https://app.rhfood.com.br',
       target: '_blank'
@@ -73,7 +71,6 @@ const specialPlans = ref([
     description: 'Nenhuma das opções acima atende 100% ao que você precisa? Sem problemas. Temos soluções flexíveis para atender exatamente ao seu fluxo de trabalho.',
     button: {
       label: 'Entrar em contato',
-      color: 'neutral',
       variant: 'subtle',
       to: 'https://wa.me/+5521986461559?text=Ol%C3%A1,%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20personalizado%20do%20RHFood.',
       target: '_blank'

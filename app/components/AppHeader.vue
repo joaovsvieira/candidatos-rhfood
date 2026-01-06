@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const items = computed(() => [{
+  label: 'Monte seu Currículo',
+  to: '/my-resumes'
+}, {
   label: 'Sobre',
   to: '/about'
 }, {

@@ -13,7 +13,7 @@ const { data: vacancies } = await useLazyFetch(`${apiBaseUrl}/api/vacancies`, {
 })
 
 const cards = computed(() => {
-  const items = vacancies.value || []
+  const items = vacancies.value as Vacancy[] || []
 
   return items.map((vacancy: Vacancy) => {
     const address_street = vacancy.address_street ? `${vacancy.address_street},` : ''
@@ -33,7 +33,7 @@ const cards = computed(() => {
     <UPageHeader
       title="Vagas Encontradas"
       description="Use nosso filtro para personalizar sua busca!"
-      class="py-[50px]"
+      class="py-12.5"
     />
 
     <UPageBody>

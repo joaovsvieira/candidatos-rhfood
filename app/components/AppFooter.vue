@@ -2,6 +2,9 @@
 const columns = [{
   label: 'Empresa',
   children: [{
+    label: 'Monte seu Currículo',
+    to: '/my-resumes'
+  }, {
     label: 'Sobre',
     to: '/about'
   }, {
