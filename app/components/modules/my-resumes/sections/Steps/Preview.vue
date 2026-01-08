@@ -8,6 +8,8 @@ const API_BASE = config.public.apiBaseUrl
 const toast = useToast()
 const resume = useResumeStore()
 
+const { refreshIdentity } = useSanctumAuth()
+
 const { generateAndOpenPdf, isGenerating } = usePdfGenerator()
 
 const previewComponentRef = ref(null)
@@ -53,6 +55,8 @@ async function onSubmit() {
     if (htmlDoCurriculo) {
       generateAndOpenPdf(htmlDoCurriculo, 'Meu-Curriculo-Top.pdf')
     }
+
+    await refreshIdentity()
   } catch (e) {
     const error = useApiError(e)
 

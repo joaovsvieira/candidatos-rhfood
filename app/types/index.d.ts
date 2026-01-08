@@ -12,6 +12,64 @@ interface User {
   address_street: string
   curriculum_url: string
   avatar_url: string
+  resume?: Resume
+  created_at: string
+  updated_at: string
+}
+
+interface Resume {
+  id: string
+  name: string
+  email: string
+  phone: string
+  location: string
+  linkedin: string
+  website: string
+  description: string
+  experiences?: Experience[]
+  educations?: Education[]
+  technical_skills?: Skill[]
+  languages?: Language[]
+  created_at: string
+  updated_at: string
+}
+
+interface Experience {
+  id: string
+  company: string
+  role: string
+  start_date: string
+  end_date?: string
+  currently_working: boolean
+  description: string
+  created_at: string
+  updated_at: string
+}
+
+interface Education {
+  id: string
+  institution: string
+  title: string
+  study_area: string
+  start_date: string
+  end_date: string
+  description: string
+  created_at: string
+  updated_at: string
+}
+
+interface Skill {
+  id: string
+  title: string
+  level: string
+  created_at: string
+  updated_at: string
+}
+
+interface Language {
+  id: string
+  title: string
+  level: string
   created_at: string
   updated_at: string
 }

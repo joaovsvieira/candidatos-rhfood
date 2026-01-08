@@ -75,7 +75,7 @@ defineExpose({ resumeContent })
 </script>
 
 <template>
-  <div ref="containerRef" class="flex justify-center bg-gray-100 print:p-0 print:bg-white w-full max-w-[100vw] overflow-hidden">
+  <div ref="containerRef" class="flex justify-center print:p-0 print:bg-white w-full max-w-[100vw] overflow-hidden">
     
     <div 
       :style="{ 
@@ -89,8 +89,7 @@ defineExpose({ resumeContent })
       
       <div 
         ref="resumeContent"
-        class="bg-white w-[210mm] min-w-[210mm] text-gray-800 leading-relaxed 
-               border-x border-b border-t-0 border-white/60 shadow-xl ring-1 ring-black/5
+        class="bg-white w-[210mm] min-w-[210mm] text-gray-800 leading-relaxed
                print:w-full print:shadow-none print:border-none print:ring-0 relative overflow-hidden"
       >
         
