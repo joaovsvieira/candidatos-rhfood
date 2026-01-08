@@ -98,7 +98,7 @@ async function onSubmit() {
 
       <div class="flex flex-col lg:flex-row lg:space-x-4 space-y-6 lg:space-y-0 mt-6">
         <UFormField
-          label="LinkedIn"
+          label="LinkedIn (apenas seu usuário)"
           name="linkedin"
           class="lg:w-1/2"
         >
@@ -110,7 +110,7 @@ async function onSubmit() {
         </UFormField>
 
         <UFormField
-          label="Website / Portfólio"
+          label="Website / Portfólio (insira o http/https)"
           name="website"
           class="lg:w-1/2"
         >

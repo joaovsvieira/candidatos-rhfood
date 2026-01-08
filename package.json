@@ -19,6 +19,7 @@
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^4.1.0",
     "@pinia/nuxt": "0.11.3",
+    "@sparticuz/chromium": "^143.0.4",
     "@standard-schema/spec": "^1.0.0",
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.4.1",
@@ -29,12 +30,14 @@
     "nuxt-auth-sanctum": "1.4.2",
     "nuxt-og-image": "^5.1.12",
     "pinia": "^3.0.4",
+    "puppeteer-core": "^24.34.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
     "@types/markdown-it": "^14.1.2",
     "eslint": "^9.38.0",
+    "puppeteer": "^24.34.0",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.2"
   },

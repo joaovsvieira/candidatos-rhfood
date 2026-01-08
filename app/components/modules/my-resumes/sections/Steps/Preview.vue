@@ -8,6 +8,10 @@ const API_BASE = config.public.apiBaseUrl
 const toast = useToast()
 const resume = useResumeStore()
 
+const { generateAndOpenPdf, isGenerating } = usePdfGenerator()
+
+const previewComponentRef = ref(null)
+
 const stepper = inject<Ref>('stepperRef')
 
 async function onSubmit() {
@@ -43,6 +47,12 @@ async function onSubmit() {
     })
 
     toast.add({ title: 'Sucesso', description: 'Seu currículo foi salvo com sucesso!', color: 'success' })
+
+    const htmlDoCurriculo = previewComponentRef.value?.resumeContent.innerHTML
+
+    if (htmlDoCurriculo) {
+      generateAndOpenPdf(htmlDoCurriculo, 'Meu-Curriculo-Top.pdf')
+    }
   } catch (e) {
     const error = useApiError(e)
 
@@ -58,9 +68,9 @@ async function onSubmit() {
 </script>
 
 <template>
-  <div>
-    <ResumePreview />
-    <div class="flex gap-2 justify-between mt-10">
+  <div class="pt-10">
+    <ResumePreview ref="previewComponentRef" />
+    <div class="flex justify-between max-w-3xl mx-auto">
       <UButton
         type="button"
         leading-icon="i-lucide-arrow-left"
@@ -72,6 +82,7 @@ async function onSubmit() {
 
       <UButton
         trailing-icon="i-lucide-download"
+        :disabled="isGenerating"
         @click="onSubmit"
       >
         Salvar e Baixar

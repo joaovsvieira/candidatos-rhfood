@@ -59,7 +59,9 @@ const schema = z.object({
       {
         message: `A dimensão da imagem é inválida. Por favor, envie uma imagem entre ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} e ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`
       }
-    ),
+    )
+    .optional()
+    .nullable(),
   full_name: z.string().min(1, 'Nome é obrigatório'),
   date_of_birth: z.string().min(1, 'Data de Nascimento é obrigatório'),
   pcd: z.array(z.string()),
@@ -69,11 +71,12 @@ const schema = z.object({
   address_city: z.string().min(1, 'Cidade é obrigatório'),
   address_district: z.string().min(1, 'Bairro é obrigatório'),
   address_street: z.string().min(1, 'Logradouro/Rua/Avenida é obrigatório'),
-  curriculum: z.instanceof(File, { message: 'Currículo é obrigatório' })
+  curriculum: z.instanceof(File, { message: 'Currículo é obrigatório' }).optional().nullable()
 })
 
 interface FormState {
   avatar: File | undefined
+  avatar_url: string
   full_name: string
   date_of_birth: string
   pcd: string[]
@@ -88,15 +91,16 @@ interface FormState {
 
 const state = reactive<FormState>({
   avatar: undefined,
+  avatar_url: user.value?.avatar_url || '',
   full_name: user.value?.name || '',
-  date_of_birth: '',
-  pcd: [],
-  contact_phone: '',
-  address_zipcode: '',
-  address_state: '',
-  address_city: '',
-  address_district: '',
-  address_street: '',
+  date_of_birth: user.value?.date_of_birth || '',
+  pcd: user.value?.pwd || [],
+  contact_phone: user.value?.contact_phone || '',
+  address_zipcode: user.value?.address_zipcode || '',
+  address_state: user.value?.address_state || '',
+  address_city: user.value?.address_city || '',
+  address_district: user.value?.address_district || '',
+  address_street: user.value?.address_street || '',
   curriculum: undefined
 })
 
@@ -134,7 +138,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       throw new Error('CSRF Token não foi obtido.')
     }
 
-    await $fetch(`${API_BASE}/api/vacancies/${route.params.id}/candidate`, {
+    await $fetch(`${API_BASE}/api/update-profile`, {
       method: 'POST',
       body: formData,
       headers: {
@@ -143,9 +147,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       credentials: 'include'
     })
 
-    toast.add({ title: 'Candidatura enviada', description: 'Agora é só aguardar. Boa sorte!', color: 'success' })
-
-    await navigateTo(`/vacancies/${route.params.id}/success`)
+    toast.add({ title: 'Perfil salvo com sucesso!', color: 'success' })
   } catch (e) {
     console.log(e)
     const error = useApiError(e)
@@ -164,10 +166,18 @@ function createObjectUrl(file: File): string {
   return URL.createObjectURL(file)
 }
 
+const fileInputRef = ref<HTMLInputElement | null>(null)
+
+function handleFileClick() {
+  fileInputRef.value?.click()
+}
+
 function onFileChange(event: Event) {
   const input = event.target as HTMLInputElement
 
-  state.curriculum = input.files?.[0] || undefined
+  if (input.files && input.files.length > 0) {
+    state.curriculum = input.files[0]
+  }
 }
 
 const addressLoading = ref(false)
@@ -235,7 +245,7 @@ watch(
       @submit="onSubmit"
     >
       <UFormField
-        label="Foto*"
+        label="Foto"
         name="avatar"
       >
         <UFileUpload
@@ -246,7 +256,7 @@ watch(
           <div class="flex flex-wrap items-center gap-3">
             <UAvatar
               size="3xl"
-              :src="state.avatar ? createObjectUrl(state.avatar) : undefined"
+              :src="state.avatar ? createObjectUrl(state.avatar) : (API_BASE + '/storage/' + state.avatar_url ||undefined)"
               icon="i-lucide-image"
             />
 
@@ -393,16 +403,40 @@ watch(
       </div>
 
       <UFormField
-        label="Currículo (anexar arquivo)*"
+        label="Currículo (anexar arquivo)"
         name="curriculum"
         class="mt-8"
       >
-        <UInput
-          class="w-full"
-          aria-required="true"
+        <input
+          ref="fileInputRef"
           type="file"
+          class="hidden"
+          accept=".pdf,.doc,.docx"
           @change="onFileChange"
-        />
+        >
+        <div class="flex items-center gap-3">
+          <UButton
+            icon="i-lucide-upload"
+            color="neutral"
+            variant="outline"
+            @click="handleFileClick"
+          >
+            Selecionar Arquivo
+          </UButton>
+
+          <span class="text-sm text-gray-500 truncate max-w-50">
+            {{ state.curriculum ? state.curriculum.name : 'Nenhum arquivo selecionado' }}
+          </span>
+
+          <UButton
+            v-if="state.curriculum"
+            icon="i-lucide-x"
+            color="gray"
+            variant="ghost"
+            size="xs"
+            @click="state.curriculum = undefined"
+          />
+        </div>
       </UFormField>
 
       <UButton

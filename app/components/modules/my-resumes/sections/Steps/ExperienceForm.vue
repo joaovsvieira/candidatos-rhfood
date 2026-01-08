@@ -80,16 +80,16 @@ function onError(event: any) {
         <div
           v-for="(experience, index) in resume.experiences"
           :key="experience.id"
-          class="border border-gray-900 rounded-lg transition-all duration-700"
+          class="border border-gray-300 dark:border-gray-900 rounded-lg transition-all duration-700"
           :class="{ 'border-primary/50': resume.activeExperienceId === experience.id }"
         >
           <div
             class="flex items-center justify-between px-4 py-4"
-            :class="{ 'border-b border-gray-900': resume.activeExperienceId === experience.id }"
+            :class="{ 'border-b border-gray-300 dark:border-gray-900': resume.activeExperienceId === experience.id }"
             @click="resume.activeExperienceId = resume.activeExperienceId === experience.id ? null : experience.id"
           >
             <div class="flex items-center space-x-4 flex-1">
-              <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">
+              <div class="w-10 h-10 rounded-full bg-primary text-white dark:text-primary-foreground flex items-center justify-center font-semibold">
                 {{ index + 1 }}
               </div>
 

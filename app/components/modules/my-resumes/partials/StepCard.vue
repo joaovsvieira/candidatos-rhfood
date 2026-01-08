@@ -3,8 +3,8 @@ import ResumePreview from '@/components/modules/my-resumes/sections/ResumePrevie
 </script>
 
 <template>
-  <div class="flex flex-col lg:flex-row justify-between mt-10">
-    <div class="lg:w-1/2">
+  <div class="flex flex-col lg:flex-row justify-between items-center mt-10 lg:space-x-12">
+    <div class="lg:w-1/2 mb-10 lg:mb-0 w-full">
       <slot />
     </div>
 

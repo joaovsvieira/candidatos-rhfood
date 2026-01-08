@@ -2,6 +2,18 @@ interface User {
   id: number
   name: string
   email: string
+  date_of_birth: string
+  contact_phone: string
+  pwd: string[]
+  address_zipcode: string
+  address_state: string
+  address_city: string
+  address_district: string
+  address_street: string
+  curriculum_url: string
+  avatar_url: string
+  created_at: string
+  updated_at: string
 }
 
 interface Vacancy {

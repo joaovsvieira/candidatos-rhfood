@@ -54,7 +54,7 @@ async function onSubmit() {
         <div
           v-for="(skill, index) in resume.technicalSkills"
           :key="skill.id"
-          class="border border-gray-900 rounded-lg transition-all duration-700"
+          class="border border-gray-300 dark:border-gray-900 rounded-lg transition-all duration-700"
         >
           <div class="flex items-center justify-between space-x-4 px-4 py-4">
             <UFormField :name="`technicalSkills.${index}.title`">
@@ -104,7 +104,7 @@ async function onSubmit() {
         <div
           v-for="(language, index) in resume.languages"
           :key="language.id"
-          class="border border-gray-900 rounded-lg transition-all duration-700"
+          class="border border-gray-300 dark:border-gray-900 rounded-lg transition-all duration-700"
         >
           <div class="flex items-center justify-between space-x-4 px-4 py-4">
             <UFormField :name="`languages.${index}.title`">

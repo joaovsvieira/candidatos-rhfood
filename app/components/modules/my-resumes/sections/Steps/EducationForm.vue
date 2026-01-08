@@ -72,16 +72,16 @@ function onError(event: any) {
         <div
           v-for="(education, index) in resume.educations"
           :key="education.id"
-          class="border border-gray-900 rounded-lg transition-all duration-700"
+          class="border border-gray-300 dark:border-gray-900 rounded-lg transition-all duration-700"
           :class="{ 'border-primary/50': resume.activeEducationId === education.id }"
         >
           <div
             class="flex items-center justify-between px-4 py-4"
-            :class="{ 'border-b border-gray-900': resume.activeEducationId === education.id }"
+            :class="{ 'border-b border-gray-300 dark:border-gray-900': resume.activeEducationId === education.id }"
             @click="resume.activeEducationId = resume.activeEducationId === education.id ? null : education.id"
           >
             <div class="flex items-center space-x-4 flex-1">
-              <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">
+              <div class="w-10 h-10 rounded-full bg-primary text-white dark:text-primary-foreground flex items-center justify-center font-semibold">
                 {{ index + 1 }}
               </div>
 

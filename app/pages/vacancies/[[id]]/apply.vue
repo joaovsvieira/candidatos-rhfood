@@ -463,7 +463,7 @@ watch(
                 Selecionar Arquivo
               </UButton>
 
-              <span class="text-sm text-gray-500 truncate max-w-[200px]">
+              <span class="text-sm text-gray-500 truncate max-w-50">
                 {{ state.curriculum ? state.curriculum.name : 'Nenhum arquivo selecionado' }}
               </span>
 
