@@ -7,6 +7,8 @@ const route = useRoute()
 const config = useRuntimeConfig()
 const API_BASE = config.public.apiBaseUrl
 
+const user = useSanctumUser<User>()
+
 const toast = useToast()
 
 const { data: vacancy, error } = await useFetch<Vacancy>(`${API_BASE}/api/vacancies/${route.params.id}`)
@@ -87,7 +89,7 @@ const schema = z.object({
   address_city: z.string().min(1, 'Cidade é obrigatório'),
   address_district: z.string().min(1, 'Bairro é obrigatório'),
   address_street: z.string().min(1, 'Logradouro/Rua/Avenida é obrigatório'),
-  curriculum: z.instanceof(File, { message: 'Currículo é obrigatório' })
+  curriculum: user.value?.curriculum_url ? z.instanceof(File).optional().nullable() : z.instanceof(File, { message: 'Currículo é obrigatório' })
 })
 
 interface FormState {
@@ -107,16 +109,16 @@ interface FormState {
 
 const state = reactive<FormState>({
   avatar: undefined,
-  full_name: '',
-  date_of_birth: '',
-  pcd: [],
-  contact_email: '',
-  contact_phone: '',
-  address_zipcode: '',
-  address_state: '',
-  address_city: '',
-  address_district: '',
-  address_street: '',
+  full_name: user.value ? user.value.name : '',
+  date_of_birth: user.value ? user.value.date_of_birth : '',
+  pcd: user.value ? user.value.pwd : [],
+  contact_email: user.value ? user.value.email : '',
+  contact_phone: user.value ? user.value.contact_phone : '',
+  address_zipcode: user.value ? user.value.address_zipcode : '',
+  address_state: user.value ? user.value.address_state : '',
+  address_city: user.value ? user.value.address_city : '',
+  address_district: user.value ? user.value.address_district : '',
+  address_street: user.value ? user.value.address_street : '',
   curriculum: undefined
 })
 
@@ -265,6 +267,17 @@ watch(
 
     <UPage>
       <UPageBody>
+        <div class="flex items-center justify-end">
+          <UButton
+            v-if="!user"
+            to="/login"
+            class="cursor-pointer"
+            variant="subtle"
+          >
+            Carregar Meus Dados
+          </UButton>
+        </div>
+
         <UForm
           :schema="schema"
           :state="state"
@@ -283,7 +296,7 @@ watch(
               <div class="flex flex-wrap items-center gap-3">
                 <UAvatar
                   size="3xl"
-                  :src="state.avatar ? createObjectUrl(state.avatar) : undefined"
+                  :src="state.avatar ? createObjectUrl(state.avatar) : (user?.avatar_url ? API_BASE + '/storage/' + user.avatar_url : undefined)"
                   icon="i-lucide-image"
                 />
 
@@ -446,6 +459,20 @@ watch(
             name="curriculum"
             class="mt-8"
           >
+            <div v-if="user?.curriculum_url" class="border-l-4 mb-2 border-yellow-400 bg-yellow-50 px-4 py-2 dark:border-yellow-500 dark:bg-yellow-500/10">
+              <div class="flex">
+                <div class="shrink-0">
+                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 text-yellow-400 dark:text-yellow-500">
+                    <path d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" fill-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                    Você já tem um currículo salvo conosco.
+                  </p>
+                </div>
+              </div>
+            </div>
             <input
               ref="fileInputRef"
               type="file"

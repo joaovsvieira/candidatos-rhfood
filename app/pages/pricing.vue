@@ -11,7 +11,8 @@ const plans = ref([
     title: 'Compra avulsa',
     description: 'Acesso limitado ao recurso que você está comprando, sem cobranças recorrentes.',
     terms: 'Oferta válida até ' + dateFormatted,
-    price: 'R$ 99,90',
+    price: 'R$ 180,00',
+    discount: 'R$ 99,90',
     button: {
       label: 'Cadastrar',
       variant: 'subtle',
@@ -40,7 +41,8 @@ const plans = ref([
     highlight: true,
     terms: 'Oferta válida até ' + dateFormatted,
     billingCycle: '/mês',
-    price: 'R$ 229,00',
+    price: 'R$ 349,00',
+    discount: 'R$ 229,00',
     button: {
       label: 'Cadastrar',
       variant: 'subtle',

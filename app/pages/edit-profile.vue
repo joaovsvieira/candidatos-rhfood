@@ -71,8 +71,27 @@ const schema = z.object({
   address_city: z.string().min(1, 'Cidade é obrigatório'),
   address_district: z.string().min(1, 'Bairro é obrigatório'),
   address_street: z.string().min(1, 'Logradouro/Rua/Avenida é obrigatório'),
-  curriculum: z.instanceof(File, { message: 'Currículo é obrigatório' }).optional().nullable()
+  curriculum: user.value?.curriculum_url ? z.instanceof(File).optional().nullable() : z.instanceof(File, { message: 'Currículo é obrigatório' })
 })
+
+const passwordSchema = z.object({
+  current_password: z
+    .string()
+    .min(1, 'A senha atual é obrigatória'),
+
+  password: z
+    .string()
+    .min(1, 'A senha é obrigatória')
+    .min(8, 'A senha deve ter no mínimo 8 caracteres'),
+
+  password_confirmation: z
+    .string()
+    .min(1, 'A confirmação de senha é obrigatória')
+})
+  .refine((data) => data.password === data.password_confirmation, {
+    message: 'As senhas não conferem',
+    path: ['password_confirmation']
+  })
 
 interface FormState {
   avatar: File | undefined
@@ -87,6 +106,12 @@ interface FormState {
   address_district: string
   address_street: string
   curriculum: File | undefined
+}
+
+interface PasswordState {
+  current_password: string
+  password: string
+  password_confirmation: string
 }
 
 const state = reactive<FormState>({
@@ -104,7 +129,14 @@ const state = reactive<FormState>({
   curriculum: undefined
 })
 
+const passwordState = reactive<PasswordState>({
+  current_password: '',
+  password: '',
+  password_confirmation: ''
+})
+
 type Schema = z.output<typeof schema>
+type PasswordSchema = z.output<typeof passwordSchema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   const formData = new FormData()
@@ -148,6 +180,45 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     })
 
     toast.add({ title: 'Perfil salvo com sucesso!', color: 'success' })
+  } catch (e) {
+    console.log(e)
+    const error = useApiError(e)
+
+    if (error.isValidationError) {
+      Object.entries(error.bag).forEach((err) => {
+        toast.add({ title: 'Ocorreu um erro', description: err[1][0], color: 'error' })
+      })
+    } else {
+      toast.add({ title: 'Ocorreu um erro', description: 'Tente novamente, mais tarde.', color: 'error' })
+    }
+  }
+}
+
+async function updatePassword(payload: FormSubmitEvent<PasswordSchema>) {
+  const formData = new FormData()
+
+  formData.append('current_password', passwordState.current_password)
+  formData.append('password', passwordState.password)
+  formData.append('password_confirmation', passwordState.password_confirmation)
+
+  try {
+    const token = await getCsrfToken()
+
+    if (!token) {
+      toast.add({ title: 'Ocorreu um erro', description: 'Tente novamente, mais tarde.', color: 'error' })
+      throw new Error('CSRF Token não foi obtido.')
+    }
+
+    await $fetch(`${API_BASE}/api/update-password`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-XSRF-TOKEN': token
+      },
+      credentials: 'include'
+    })
+
+    toast.add({ title: 'Senha atualizada com sucesso!', color: 'success' })
   } catch (e) {
     console.log(e)
     const error = useApiError(e)
@@ -256,7 +327,7 @@ watch(
           <div class="flex flex-wrap items-center gap-3">
             <UAvatar
               size="3xl"
-              :src="state.avatar ? createObjectUrl(state.avatar) : (API_BASE + '/storage/' + state.avatar_url ||undefined)"
+              :src="state.avatar ? createObjectUrl(state.avatar) : (state.avatar_url ? API_BASE + '/storage/' + state.avatar_url : undefined)"
               icon="i-lucide-image"
             />
 
@@ -403,10 +474,24 @@ watch(
       </div>
 
       <UFormField
-        label="Currículo (anexar arquivo)"
+        label="Currículo (anexar arquivo)*"
         name="curriculum"
         class="mt-8"
       >
+        <div v-if="user?.curriculum_url" class="border-l-4 mb-2 border-yellow-400 bg-yellow-50 px-4 py-2 dark:border-yellow-500 dark:bg-yellow-500/10">
+          <div class="flex">
+            <div class="shrink-0">
+              <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 text-yellow-400 dark:text-yellow-500">
+                <path d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" fill-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                Você já tem um currículo salvo conosco.
+              </p>
+            </div>
+          </div>
+        </div>
         <input
           ref="fileInputRef"
           type="file"
@@ -437,6 +522,88 @@ watch(
             @click="state.curriculum = undefined"
           />
         </div>
+      </UFormField>
+
+      <UButton
+        type="submit"
+        class="w-full mt-8"
+        variant="subtle"
+        size="xl"
+      >
+        Salvar
+      </UButton>
+    </UForm>
+
+    <div class="space-y-4 max-w-md mx-auto mb-15">
+      <UFormField
+        label="E-mail*"
+        name="email"
+        class="mt-8"
+      >
+        <UInput
+          :value="user?.email"
+          disabled
+          class="w-full"
+          aria-required="true"
+        />
+        <div class="border-l-4 mt-2 border-yellow-400 bg-yellow-50 px-4 py-2 dark:border-yellow-500 dark:bg-yellow-500/10">
+          <div class="flex">
+            <div class="shrink-0">
+              <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 text-yellow-400 dark:text-yellow-500">
+                <path d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" fill-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                Não é possível alterar seu e-mail.
+              </p>
+            </div>
+          </div>
+        </div>
+      </UFormField>
+    </div>
+
+    <UForm
+      :schema="passwordSchema"
+      :state="passwordState"
+      class="space-y-4 max-w-md mx-auto mb-15"
+      @submit="updatePassword"
+    >
+      <UFormField
+        label="Senha atual"
+        name="currently_password"
+        class="mt-8"
+      >
+        <UInput
+          v-model="passwordState.current_password"
+          class="w-full"
+          type="password"
+          aria-required="true"
+        />
+      </UFormField>
+
+      <UFormField
+        label="Nova senha"
+        name="password"
+      >
+        <UInput
+          v-model="passwordState.password"
+          class="w-full"
+          type="password"
+          aria-required="true"
+        />
+      </UFormField>
+
+      <UFormField
+        label="Confirme a senha"
+        name="password_confirmation"
+      >
+        <UInput
+          v-model="passwordState.password_confirmation"
+          class="w-full"
+          type="password"
+          aria-required="true"
+        />
       </UFormField>
 
       <UButton
