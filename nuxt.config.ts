@@ -16,6 +16,8 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  ssr: false,
+
   sanctum: {
     mode: 'cookie',
     userStateKey: 'sanctum.user.identity',
