@@ -111,7 +111,7 @@ const state = reactive<FormState>({
   avatar: undefined,
   full_name: user.value ? user.value.name : '',
   date_of_birth: user.value ? user.value.date_of_birth : '',
-  pcd: user.value ? user.value.pwd : [],
+  pcd: [],
   contact_email: user.value ? user.value.email : '',
   contact_phone: user.value ? user.value.contact_phone : '',
   address_zipcode: user.value ? user.value.address_zipcode : '',
