@@ -18,7 +18,7 @@ const items = [
     </template>
 
     <template #title>
-      O proximo passo da <br>sua <span class="text-primary">carreira</span> está aqui
+      O próximo passo da <br>sua <span class="text-primary">carreira</span> está aqui
     </template>
 
     <div class="flex items-center justify-center w-full max-w-xl mx-auto">

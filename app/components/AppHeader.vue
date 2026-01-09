@@ -45,10 +45,11 @@ const items = computed(() => [{
       />
 
       <UButton
-        label="Vagas"
+        label="Empresas"
         trailing-icon="i-lucide-arrow-right"
         class="hidden lg:inline-flex"
-        to="/search"
+        to="https://app.rhfood.com.br"
+        target="_blank"
       />
     </template>
 
@@ -71,7 +72,8 @@ const items = computed(() => [{
       />
       <UButton
         label="Vagas"
-        to="/search"
+        to="https://app.rhfood.com.br"
+        target="_blank"
         block
       />
     </template>
