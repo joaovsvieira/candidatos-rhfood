@@ -301,7 +301,7 @@ watch(
                 />
 
                 <UButton
-                  :label="state.avatar ? 'Trocar imagem' : 'Enviar imagem'"
+                  :label="state.avatar ? 'Trocar foto' : 'Anexar foto'"
                   color="neutral"
                   variant="outline"
                   @click="open()"
@@ -455,7 +455,7 @@ watch(
           </div>
 
           <UFormField
-            label="Currículo (anexar arquivo)*"
+            label="Currículo (anexar arquivo PDF)*"
             name="curriculum"
             class="mt-8"
           >
@@ -504,6 +504,8 @@ watch(
               />
             </div>
           </UFormField>
+
+          <span class="text-sm text-gray-500">Deseja montar o seu currículo? <a href="/create-resume" class="underline">Clique aqui.</a></span>
 
           <UButton
             type="submit"

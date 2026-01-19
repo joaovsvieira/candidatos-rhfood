@@ -1,23 +1,33 @@
 <script setup lang="ts">
 const items = computed(() => [{
+  label: 'Para Empresas',
+  to: '/pricing'
+}, {
+  label: 'Vagas',
+  to: '/search'
+}, {
+  label: 'Passo a Passo',
+  to: '/step-by-step'
+}, {
   label: 'Monte seu Currículo',
   to: '/my-resumes'
 }, {
   label: 'Sobre',
   to: '/about'
 }, {
-  label: 'Vagas',
-  to: '/search'
-}, {
-  label: 'Para Empresas',
-  to: '/pricing'
-}, {
-  label: 'Passo a Passo',
-  to: '/step-by-step'
-}, {
   label: 'Contato',
   to: '/contact'
 }])
+
+const user = useSanctumUser<User>()
+
+const accountLabel = computed(() => {
+  if (user.value?.name) {
+    const firstName = user.value.name.split(' ')[0]
+    return `Olá, ${firstName}`
+  }
+  return 'Candidato'
+})
 </script>
 
 <template>
@@ -37,7 +47,7 @@ const items = computed(() => [{
       <UColorModeButton />
 
       <UButton
-        label="Minha conta"
+        :label="accountLabel"
         color="neutral"
         variant="outline"
         to="/my-account"
@@ -45,8 +55,9 @@ const items = computed(() => [{
       />
 
       <UButton
-        label="Empresas"
+        label="Empresa"
         trailing-icon="i-lucide-arrow-right"
+        variant="ghost"
         class="hidden lg:inline-flex"
         to="https://app.rhfood.com.br"
         target="_blank"
@@ -63,7 +74,7 @@ const items = computed(() => [{
       <USeparator class="my-6" />
 
       <UButton
-        label="Minha conta"
+        :label="accountLabel"
         color="neutral"
         variant="subtle"
         to="/my-account"
@@ -71,7 +82,9 @@ const items = computed(() => [{
         class="mb-3"
       />
       <UButton
-        label="Vagas"
+        label="Empresa"
+        trailing-icon="i-lucide-arrow-right"
+        variant="ghost"
         to="https://app.rhfood.com.br"
         target="_blank"
         block

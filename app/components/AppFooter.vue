@@ -2,20 +2,20 @@
 const columns = [{
   label: 'Empresa',
   children: [{
+    label: 'Para Empresas',
+    to: '/pricing'
+  }, {
+    label: 'Vagas',
+    to: '/search'
+  }, {
+    label: 'Passo a Passo',
+    to: '/step-by-step'
+  }, {
     label: 'Monte seu Currículo',
     to: '/my-resumes'
   }, {
     label: 'Sobre',
     to: '/about'
-  }, {
-    label: 'Vagas',
-    to: '/search'
-  }, {
-    label: 'Para Empresas',
-    to: '/pricing'
-  }, {
-    label: 'Passo a Passo',
-    to: '/step-by-step'
   }, {
     label: 'Contato',
     to: '/contact'

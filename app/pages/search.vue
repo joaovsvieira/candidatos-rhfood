@@ -2,6 +2,8 @@
 const route = useRoute()
 const apiBaseUrl = useRuntimeConfig().public.apiBaseUrl
 
+const toast = useToast()
+
 const { data: vacancies } = await useLazyFetch(`${apiBaseUrl}/api/vacancies`, {
   query: computed(() => ({
     title: route.query.query,
@@ -22,10 +24,47 @@ const cards = computed(() => {
       id: vacancy.id,
       title: truncate(vacancy.title, 32),
       description: `${address_street} ${vacancy.address_city} - ${vacancy.address_state}`,
-      badge: vacancy.role_name
+      badge: vacancy.role_name,
+      level_of_experience: vacancy.level_of_experience,
+      pwd: vacancy.pwd
     }
   })
 })
+
+async function share(title: string, href: string) {
+  if (!navigator.share) {
+    await copyToClipboard(href)
+    return
+  }
+
+  navigator.share({
+    url: href,
+    text: 'Vaga de ' + title + ' na RHFood',
+    title: title
+  })
+}
+
+async function copyToClipboard(href: string) {
+  if (!navigator.clipboard) {
+    toast.add({
+      title: 'Houve um erro',
+      description: 'Não foi possível copiar o link!',
+      color: 'error'
+    })
+    return
+  }
+
+  try {
+    await navigator.clipboard.writeText(href)
+    toast.add({
+      title: 'Link copiado',
+      description: 'Use o link para compartilhar esta vaga!',
+      color: 'success'
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
 </script>
 
 <template>
@@ -44,11 +83,35 @@ const cards = computed(() => {
           v-bind="card"
           :to="`/vacancies/${card.id}`"
           spotlight
+          :ui="{
+            header: 'flex justify-between w-full'
+          }"
         >
           <template #header>
-            <UBadge variant="subtle">
-              {{ card.badge }}
-            </UBadge>
+            <div class="flex space-x-1">
+              <UBadge variant="subtle">
+                {{ card.badge }}
+              </UBadge>
+
+              <UBadge v-if="card.level_of_experience === '60+' || card.level_of_experience === 'Primeiro emprego' || card.level_of_experience === 'Aprendiz' || card.level_of_experience === 'Estágio'" variant="subtle">
+                {{ card.level_of_experience }}
+              </UBadge>
+
+              <UBadge v-if="card.pwd" variant="subtle" color="info">
+                PCD
+              </UBadge>
+            </div>
+
+            <div class="z-50">
+              <UButton
+                size="xs"
+                color="success"
+                variant="subtle"
+                trailing-icon="i-lucide-share-2"
+                class="cursor-pointer"
+                @click="share(card.title, `/vacancies/${card.id}`)"
+              />
+            </div>
           </template>
         </UPageCard>
       </UPageGrid>

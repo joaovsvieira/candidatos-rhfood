@@ -332,7 +332,7 @@ watch(
             />
 
             <UButton
-              :label="state.avatar ? 'Trocar imagem' : 'Enviar imagem'"
+              :label="state.avatar ? 'Trocar foto' : 'Anexar foto'"
               color="neutral"
               variant="outline"
               @click="open()"

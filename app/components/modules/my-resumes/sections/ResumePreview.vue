@@ -158,14 +158,14 @@ defineExpose({ resumeContent })
             <div class="flex flex-col gap-5">
               <div v-for="exp in store.experiences" :key="exp.id" class="break-inside-avoid">
                 <div class="flex justify-between items-baseline mb-1">
-                  <h3 class="font-bold text-gray-900 text-base">{{ exp.role }}</h3>
+                  <h3 class="font-bold text-gray-900 text-base">{{ exp.company }}</h3>
                   <span class="text-xs text-gray-600 font-medium whitespace-nowrap bg-gray-100 px-2 py-0.5">
                     {{ exp.startDate }} – {{ exp.currentlyWorking ? 'Atualmente' : exp.endDate }}
                   </span>
                 </div>
                 
                 <div class="text-sm font-bold text-gray-900 mb-2">
-                  {{ exp.company }}
+                  {{ exp.role }}
                 </div>
                 
                 <p class="text-sm text-gray-700 whitespace-pre-line pl-3 border-l-2 border-gray-200">

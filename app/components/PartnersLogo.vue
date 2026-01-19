@@ -17,6 +17,25 @@ const logos = ref([
     alt: 'Giraffas'
   }
 ])
+
+const logos2 = ref([
+  {
+    src: '/bobs.png',
+    alt: 'Bobs'
+  },
+  {
+    src: '/baladamix.png',
+    alt: 'Balada Mix'
+  },
+  {
+    src: '/villario.png',
+    alt: 'Villa Rio'
+  },
+  {
+    src: '/ledoux.png',
+    alt: 'Le Doux'
+  }
+])
 </script>
 
 <template>
@@ -24,14 +43,32 @@ const logos = ref([
     <h2 class="text-center mb-8 text-lg text-pretty text-muted">
       Empresas que confiam no RHFood
     </h2>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8">
-      <img
+    <UMarquee pause-on-hover :repeat="6" class="py-4">
+      <UPageCard
         v-for="(logo, index) in logos"
         :key="index"
-        :src="logo.src"
-        :alt="logo.alt"
-        class="w-40 mx-auto grayscale opacity-60 hover:opacity-100 transition duration-300"
+        class="bg-black/10"
       >
-    </div>
+        <img
+          :src="logo.src"
+          :alt="logo.alt"
+          class="w-40 mx-auto grayscale opacity-60 hover:opacity-100 transition duration-300"
+        />
+      </UPageCard>
+    </UMarquee>
+
+    <UMarquee reverse pause-on-hover :repeat="6" class="py-4">
+      <UPageCard
+        v-for="(logo, index) in logos2"
+        :key="index"
+        class="bg-black/10"
+      >
+        <img
+          :src="logo.src"
+          :alt="logo.alt"
+          class="w-40 mx-auto grayscale opacity-60 hover:opacity-100 transition duration-300"
+        />
+      </UPageCard>
+    </UMarquee>
   </UContainer>
 </template>

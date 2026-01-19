@@ -124,7 +124,7 @@ async function onSubmit() {
 
       <div class="mt-6">
         <UFormField
-          label="Resume Profissional *"
+          label="Conte um pouco sobre você *"
           name="description"
         >
           <UTextarea
