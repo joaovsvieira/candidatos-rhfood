@@ -39,7 +39,7 @@ async function onSubmit() {
   const queryParams = {
     ...(state && { state }),
     ...(city && { city }),
-    ...(query && { q: query })
+    ...(query && { title: query })
   }
 
   await navigateTo({

@@ -112,6 +112,7 @@ async function copyToClipboard(href: string) {
         size="xl"
         label="Todas as vagas"
         trailing-icon="i-lucide-arrow-right"
+        to="/search"
       />
     </div>
   </UPageSection>

@@ -6,7 +6,7 @@ const toast = useToast()
 
 const { data: vacancies } = await useLazyFetch(`${apiBaseUrl}/api/vacancies`, {
   query: computed(() => ({
-    title: route.query.query,
+    title: route.query.title,
     address_state: route.query.state,
     address_city: route.query.city
   })),
