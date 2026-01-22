@@ -9,6 +9,7 @@ const API_BASE = config.public.apiBaseUrl
 
 const toast = useToast()
 const user = useSanctumUser<User>()
+const { refreshIdentity } = useSanctumAuth()
 
 definePageMeta({
   middleware: ['sanctum:auth']
@@ -180,6 +181,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     })
 
     toast.add({ title: 'Perfil salvo com sucesso!', color: 'success' })
+
+    await refreshIdentity()
   } catch (e) {
     console.log(e)
     const error = useApiError(e)
@@ -219,6 +222,8 @@ async function updatePassword(payload: FormSubmitEvent<PasswordSchema>) {
     })
 
     toast.add({ title: 'Senha atualizada com sucesso!', color: 'success' })
+
+    await refreshIdentity()
   } catch (e) {
     console.log(e)
     const error = useApiError(e)
