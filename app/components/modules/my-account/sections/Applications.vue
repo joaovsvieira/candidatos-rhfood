@@ -109,12 +109,12 @@ const { data: applications } = await useFetch<Candidate[]>(`${apiBaseUrl}/api/my
 
       <template #footer>
         <div class="flex items-center justify-between">
-          <span>{{ application.vacancy.address_street }}, {{ application.vacancy.address_district }} - {{ application.vacancy.address_state }}</span>
+          <span>{{ application.vacancy.show_address ? `${application.vacancy.address_street}, ${application.vacancy.address_city} - ${application.vacancy.address_state}` : `${application.vacancy.address_district}, ${application.vacancy.address_city} - ${application.vacancy.address_state}` }}</span>
           <UButton
             variant="subtle"
             color="success"
             size="sm"
-            :to="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(application.vacancy.address_street+', '+application.vacancy.address_district+', '+application.vacancy.address_city)}`"
+            :to="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(application.vacancy.show_address ? `${application.vacancy.address_street}, ${application.vacancy.address_city} - ${application.vacancy.address_state}` : `${application.vacancy.address_district}, ${application.vacancy.address_city} - ${application.vacancy.address_state}`)}`"
             target="_blank"
           >
             Ver no mapa

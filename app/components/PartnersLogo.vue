@@ -32,8 +32,8 @@ const logos2 = ref([
     alt: 'Villa Rio'
   },
   {
-    src: '/ledoux.png',
-    alt: 'Le Doux'
+    src: '/americas.png',
+    alt: 'Américas Hotéis'
   }
 ])
 </script>

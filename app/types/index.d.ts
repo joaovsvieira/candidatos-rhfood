@@ -101,6 +101,7 @@ interface Vacancy {
   minimum_training: string
   pwd: string
   show_company: number
+  show_address: number
   expires_at: string
   created_at: string
   updated_at: string

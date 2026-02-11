@@ -26,7 +26,7 @@ const { data: surround } = await useFetch<Vacancy[]>(`${apiBaseUrl}/api/vacancie
         title: item.title,
         path: `/vacancies/${item.id}`,
         stem: `vacancies/${item.id}`,
-        description: `${item_street} ${item.address_city} - ${item.address_state}`
+        description: item.show_address ? `${item_street}, ${item.address_city} - ${item.address_state}` : `${item.address_district}, ${item.address_city} - ${item.address_state}`
       }
     })
   }
@@ -34,7 +34,7 @@ const { data: surround } = await useFetch<Vacancy[]>(`${apiBaseUrl}/api/vacancie
 
 const title = vacancy.value.title
 const address_street = vacancy.value.address_street ? `${vacancy.value.address_street},` : ''
-const description = `${address_street} ${vacancy.value.address_city} - ${vacancy.value.address_state}`
+const description = vacancy.value.show_address ? `${address_street} ${vacancy.value.address_city} - ${vacancy.value.address_state}` : `${vacancy.value.address_district}, ${vacancy.value.address_city} - ${vacancy.value.address_state}`
 const avatar_url = vacancy.value.company_logo ? `${apiBaseUrl}/storage/${vacancy.value.company_logo}` : ''
 const remuneration_salary = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(vacancy.value.remuneration_salary) / 100)
 const remuneration_comission = vacancy.value.remuneration_comission ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(vacancy.value.remuneration_comission) / 100) : ''
@@ -223,7 +223,7 @@ useSeoMeta({
               variant="subtle"
               trailing-icon="i-lucide-map-pin"
               class="mt-2"
-              :to="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(vacancy.address_street+', '+vacancy.address_district+', '+vacancy.address_city)}`"
+              :to="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(vacancy.show_address ? `${address_street}, ${vacancy.address_city} - ${vacancy.address_state}` : `${vacancy.address_district}, ${vacancy.address_city} - ${vacancy.address_state}`)}`"
               target="_blank"
             />
           </div>

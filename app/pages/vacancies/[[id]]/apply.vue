@@ -23,7 +23,7 @@ if (error.value || !vacancy.value) {
 
 const title = vacancy.value.title
 const address_street = vacancy.value.address_street ? `${vacancy.value.address_street},` : ''
-const description = `${address_street} ${vacancy.value.address_city} - ${vacancy.value.address_state}`
+const description = vacancy.value.show_address ? `${address_street} ${vacancy.value.address_city} - ${vacancy.value.address_state}` : `${vacancy.value.address_district}, ${vacancy.value.address_city} - ${vacancy.value.address_state}`
 const avatar_url = vacancy.value.company_logo ? `${API_BASE}/storage/${vacancy.value.company_logo}` : ''
 
 useSeoMeta({

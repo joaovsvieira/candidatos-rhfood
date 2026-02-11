@@ -23,7 +23,7 @@ const cards = computed(() => {
     return {
       id: vacancy.id,
       title: truncate(vacancy.title, 32),
-      description: `${address_street} ${vacancy.address_city} - ${vacancy.address_state}`,
+      description: vacancy.show_address ? `${address_street} ${vacancy.address_city} - ${vacancy.address_state}` : `${vacancy.address_district}, ${vacancy.address_city} - ${vacancy.address_state}`,
       badge: vacancy.role_name,
       level_of_experience: vacancy.level_of_experience,
       pwd: vacancy.pwd
