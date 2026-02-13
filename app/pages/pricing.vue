@@ -6,7 +6,9 @@ tomorrow.setDate(today.getDate() + 1)
 
 const dateFormatted = tomorrow.toLocaleDateString('pt-BR')
 
-const plans = ref([
+const frequency = ref('mensal')
+
+const plans = computed(() => [
   {
     title: 'Compra avulsa',
     description: 'Acesso limitado ao recurso que você está comprando, sem cobranças recorrentes.',
@@ -35,14 +37,14 @@ const plans = ref([
     ]
   },
   {
-    title: 'Assinatura recorrente',
+    title: frequency.value === 'mensal' ? 'Assinatura recorrente' : 'Assinatura anual',
     description: 'Acesso ilimitado a este e todos os outros recursos da plataforma, com atualizações constantes.',
     badge: 'Recomendado',
     highlight: true,
     terms: 'Oferta válida até ' + dateFormatted,
     billingCycle: '/mês',
     price: 'R$ 349,00',
-    discount: 'R$ 229,00',
+    discount: frequency.value === 'mensal' ? 'R$ 229,00' : 'R$ 189,00',
     button: {
       label: 'Cadastrar',
       variant: 'subtle',
@@ -94,6 +96,22 @@ useSeoMeta({
     />
 
     <UContainer>
+      <div class="flex lg:justify-between mb-8">
+        <div></div>
+        <div class="lg:w-1/2 w-full flex items-center justify-center space-x-2">
+          <UButton
+            label="Mensal"
+            :variant="frequency === 'mensal' ? 'solid' : 'subtle'"
+            @click="frequency = 'mensal'"
+          />
+          <UButton
+            label="Anual"
+            :variant="frequency === 'anual' ? 'solid' : 'subtle'"
+            @click="frequency = 'anual'"
+          />
+          </div>
+      </div>
+
       <UPricingPlans>
         <UPricingPlan
           v-for="(plan, index) in plans"
